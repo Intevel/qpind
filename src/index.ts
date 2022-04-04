@@ -26,27 +26,35 @@ const packageManagers = {
   },
 };
 
-export function detectPackageManager(cwd?: string) {
+export function detectPackageManager(fallbackToNpm?: boolean, cwd?: string) {
   if (!cwd) cwd = process.cwd();
   let pkgMgr = getPkgMgr(cwd);
   if (pkgMgr != "none") {
     consola.info(`Detected package manager: ${pkgMgr}`);
     return pkgMgr;
   } else {
-    consola.warn("Can't detect a package manager, auto fallback to: 'npm'");
-    return "npm";
+    if (fallbackToNpm) {
+      consola.warn("Can't detect a package manager, auto fallback to: 'npm'");
+      return "npm";
+    }
+    return "none";;
   }
 }
 
 export function installPackage(
   packageNames: string,
+  fallbackToNpm?: boolean,
   packageManager?: string,
   cwd?: string
 ) {
   if (!cwd) cwd = process.cwd();
   if (!packageNames) return consola.error("No package name provided");
   if (!packageManager) {
-    packageManager = detectPackageManager(cwd);
+    packageManager = detectPackageManager(fallbackToNpm, cwd);
+    if (packageManager === "none") {
+      consola.error(new Error("Can't detect a package manager, aborting. (use the 'fallbackToNpm' flag to circumvent this error.)"));
+      throw new Error("Can't detect a package manager, aborting. (use the 'fallbackToNpm' flag to circumvent this error.)");
+    }
   }
   try {
     //@ts-ignore This ignores typescript not liking accessing object properties by string
