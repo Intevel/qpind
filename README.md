@@ -9,29 +9,25 @@ Install dependecies quick & programmatically 📦
 
 ## Install
 
-Using pnpm:
 
 ```sh
+# Using npm:
+npm install qpind
+# Using pnpm:
 pnpm add qpind
-```
-
-Using yarn:
-
-```sh
+# Using yarn:
 yarn add qpind
 ```
 
-Using npm:
-
-```sh
-npm install qpind
-```
 
 ## Usage
 
-### `installPackage(packages, packageManager?, cwd?)`
+### `installPackage(packages, fallbackToNpm?, packageManager?, cwd?)`
 
-Install dependencies in your root directory, if no package manager is defined it will try to detect one.
+Install dependencies in your root directory, if no package manager is defined it will try to detect one of the following:
+- yarn
+- npm
+- pnpm
 
 ```js
 // CommonJS
@@ -43,7 +39,7 @@ import { installPackage } from "qpind";
 install("package-name");
 ```
 
-### `detectPackageManager(cwd?)`
+### `detectPackageManager(fallbackToNpm?, cwd?)`
 
 Detect the current Package Manager in the directory
 
