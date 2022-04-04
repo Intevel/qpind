@@ -7,6 +7,7 @@ export function detectPackageManager(cwd?: string) {
   if (!cwd) cwd = process.cwd();
   var isYarn = checkForYarn(cwd);
   var isNpm = checkForNpm(cwd);
+  var isPnpm = checkForPnpm(cwd);
   // Add pnpm Support
   if (isNpm) {
     consola.info("Detected package manager: npm");
@@ -14,6 +15,9 @@ export function detectPackageManager(cwd?: string) {
   } else if (isYarn) {
     consola.info("Detected package manager: yarn");
     return "yarn";
+  } else if (isPnpm) {
+    consola.info("Detected package manager: pnpm");
+    return "pnpm";
   } else {
     consola.error("Can't detect any package manager");
   }
@@ -51,6 +55,17 @@ export function installPackage(
     } catch (error) {
       consola.error(error);
     }
+  } else if (packageManager === 'pnpm') {
+    try {
+      let cmd = `pnpm add ${packageNames}`;
+      consola.info("Installing dependencies...");
+      cp.execSync(cmd, {
+        cwd,
+      });
+      consola.success("Installed dependencies :)");
+    } catch (error) {
+      consola.error(error);
+    }
   } else {
     consola.error("Cant find a package manager to install this package");
   }
@@ -66,6 +81,14 @@ function checkForNpm(cwd?: string): boolean {
 
 function checkForYarn(cwd?: string): boolean {
   if (doesFileExist("yarn.lock", cwd)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function checkForPnpm(cwd?:string): boolean {
+  if (doesFileExist("pnpm-lock.yaml", cwd)) {
     return true;
   } else {
     return false;
