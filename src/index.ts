@@ -3,6 +3,14 @@ import consola from "consola";
 import path from "path";
 import * as cp from "child_process";
 
+/*
+if there are multiple lockfiles in a directory,
+the package manager will get detected in the following order:
+- yarn
+- npm
+- pnpm
+*/
+
 const packageManagers = {
   yarn: {
     installCmd: "add",
