@@ -18,7 +18,7 @@ const packageManagers = {
   },
 };
 
-export function detectPackageManager(cwd?: string): "npm" | "yarn" | "pnpm" {
+export function detectPackageManager(cwd?: string) {
   if (!cwd) cwd = process.cwd();
   let pkgMgr = getPkgMgr(cwd);
   if (pkgMgr != "none") {
@@ -41,7 +41,7 @@ export function installPackage(
     packageManager = detectPackageManager(cwd);
   }
   try {
-    //@ts-ignore
+    //@ts-ignore This ignores typescript not liking accessing object properties by string
     let cmd = `${packageManager} ${packageManagers[packageManager].installCmd} ${packageNames}`;
     consola.info("Installing dependencies...");
     cp.execSync(cmd, {
@@ -53,15 +53,16 @@ export function installPackage(
   }
 }
 
-function getPkgMgr(cwd?: string): "npm" | "yarn" | "pnpm" | "none" {
+function getPkgMgr(cwd?: string): string {
   let keys = Object.keys(packageManagers);
+  let result = "none";
   keys.forEach((x, i) => {
-    //@ts-ignore
+    //@ts-ignore This ignores typescript not liking accessing object properties by string
     if (doesFileExist(packageManagers[x].file)) {
-      return x;
+      result = x;
     }
   });
-  return "none";
+  return result;
 }
 
 function doesFileExist(fileName: string, cwd?: string) {
