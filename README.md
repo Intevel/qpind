@@ -9,6 +9,12 @@ Install dependecies quick & programmatically 📦
 
 ## Install
 
+Using pnpm:
+
+```sh
+pnpm add qpind
+```
+
 Using yarn:
 
 ```sh
