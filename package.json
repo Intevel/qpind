@@ -1,6 +1,6 @@
 {
   "name": "qpind",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Quick programmatically install npm dependencies",
   "license": "MIT",
   "author": "Conner Luka Bachmann <mail@conner-bachmann.de>",
