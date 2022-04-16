@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Intevel/qpind/compare/v1.1.0...v1.2.0) (2022-04-16)
+
+
+### Features
+
+* **chore:** created npmignore ([a476f4d](https://github.com/Intevel/qpind/commit/a476f4d1fbd5d7585178523f42d1b64e0f45f792))
+
+
+### Bug Fixes
+
+* **chore:** update readme ([f873b12](https://github.com/Intevel/qpind/commit/f873b12ecab5197172ee9550381547edac3282ed))
+* **docs:** fixed typo ([c7e4832](https://github.com/Intevel/qpind/commit/c7e48328d1d129b23655d13c936b516a6548d0ed))
+
 ## [1.1.0](https://github.com/Intevel/qpind/compare/v1.0.1...v1.1.0) (2022-04-05)
 
 
