@@ -13,8 +13,7 @@ Install dependecies quick & programmatically 📦
 ```sh
 # Using npm:
 npm install qpind
-# Using pnpm:
-pnpm add qpind
+
 # Using yarn:
 yarn add qpind
 ```
@@ -36,7 +35,7 @@ const { installPackage } = require("qpind");
 // ESM
 import { installPackage } from "qpind";
 
-install("package-name");
+installPackage("package-name");
 ```
 
 ### `detectPackageManager(fallbackToNpm?, cwd?)`
@@ -47,7 +46,7 @@ Detect the current Package Manager in the directory
 const { detectPackageManager } = require("qpind");
 
 var packeManager = detectPackageManager();
-// -> yarn || npm
+// -> yarn || npm || pnpm
 ```
 
 ## License
