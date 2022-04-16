@@ -60,7 +60,7 @@ MIT - Made with ❤️ by Conner Luka Bachmann
 [npm-version-href]: https://npmjs.com/package/qpind
 [npm-downloads-src]: https://img.shields.io/npm/dt/qpind.svg
 [npm-downloads-href]: https://npmjs.com/package/qpind
-[github-actions-ci-src]: https://github.com/intevel/nqpind/actions/workflows/ci.yml/badge.svg
+[github-actions-ci-src]: https://github.com/intevel/qpind/actions/workflows/ci.yml/badge.svg
 [github-actions-ci-href]: https://github.com/intevel/qpind/actions?query=workflow%3Aci
 [license-src]: https://img.shields.io/npm/l/qpind.svg
 [license-href]: https://npmjs.com/package/qpind
