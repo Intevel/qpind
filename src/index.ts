@@ -15,14 +15,17 @@ const packageManagers = {
   yarn: {
     installCmd: "add",
     file: "yarn.lock",
+    dev: "--save-dev",
   },
   npm: {
     installCmd: "install",
     file: "package-lock.json",
+    dev: "--save-dev",
   },
   pnpm: {
     installCmd: "install",
     file: "pnpm-lock.yaml",
+    dev: "--dev",
   },
 };
 
@@ -43,6 +46,7 @@ export function detectPackageManager(fallbackToNpm?: boolean, cwd?: string) {
 
 export function installPackage(
   packageNames: string,
+  devPackage?: boolean,
   fallbackToNpm?: boolean,
   packageManager?: string,
   cwd?: string
@@ -58,7 +62,7 @@ export function installPackage(
   }
   try {
     //@ts-ignore This ignores typescript not liking accessing object properties by string
-    let cmd = `${packageManager} ${packageManagers[packageManager].installCmd} ${packageNames}`;
+    let cmd = `${packageManager} ${packageManagers[packageManager].installCmd} ${devPackage ? packageManagers[packageManager].dev : ""} ${packageNames}`;
     consola.info("Installing dependencies...");
     cp.execSync(cmd, {
       cwd,
@@ -72,9 +76,16 @@ export function installPackage(
 function getPkgMgr(cwd?: string): string {
   let keys = Object.keys(packageManagers);
   let result = "none";
-  keys.forEach((x, i) => {
-    //@ts-ignore This ignores typescript not liking accessing object properties by string
-    if (doesFileExist(packageManagers[x].file)) {
+  keys.forEach((x) => {
+    let exists = false;
+    if(cwd){
+      //@ts-ignore This ignores typescript not liking accessing object properties by string
+      exists = doesFileExist(packageManagers[x].file, cwd);
+    } else {
+      //@ts-ignore This ignores typescript not liking accessing object properties by string
+      exists = doesFileExist(packageManagers[x].file);
+    }
+    if (exists) {
       result = x;
     }
   });
