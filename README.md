@@ -7,6 +7,18 @@
 
 Install dependecies quick & programmatically 📦
 
+<p align="center">
+<table>
+<tbody>
+<td align="center">
+<img width="2000" height="0" /><br>
+<i>⚠️ This project is archived ⚠️</b><br>
+<sub>Use <a href="https://github.com/antfu/install-pkg">antfu/install-pkg</a> instead</sub><br>
+</td>
+</tbody>
+</table>
+</p>
+
 ## Install
 
 
